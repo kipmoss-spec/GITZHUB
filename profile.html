@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b09">
+  <title>Profile | KLYX HUB</title>
+
+  <link rel="icon" type="image/png" href="favicon-32.png">
+
+  <style>
+    :root {
+      --bg: #080b09;
+      --surface: #121915;
+      --gold: #d4af37;
+      --green: #087f45;
+      --light: #f4f4ed;
+      --muted: #a2aaa4;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--light);
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px 6%;
+      border-bottom: 1px solid #26332b;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand span {
+      color: var(--gold);
+    }
+
+    header a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    main {
+      max-width: 650px;
+      margin: 55px auto;
+      padding: 20px;
+    }
+
+    .profile-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .profile-icon {
+      width: 85px;
+      height: 85px;
+      margin: auto auto 15px;
+      border-radius: 50%;
+      background: #183c2c;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 38px;
+    }
+
+    h1 {
+      margin: 8px 0;
+    }
+
+    .profile-heading p {
+      color: var(--muted);
+    }
+
+    .profile-card {
+      background: var(--surface);
+      border: 1px solid #26352c;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .profile-option {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 22px;
+      color: var(--light);
+      text-decoration: none;
+      border-bottom: 1px solid #26352c;
+      font-size: 16px;
+    }
+
+    .profile-option:last-child {
+      border-bottom: none;
+    }
+
+    .profile-option .symbol {
+      color: var(--gold);
+      font-size: 23px;
+      width: 30px;
+      text-align: center;
+    }
+
+    .profile-option:hover {
+      background: #19241d;
+    }
+
+    .arrow {
+      margin-left: auto;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid #26332b;
+    }
+
+    footer strong {
+      color: var(--gold);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <img src="klyx-icon.png" alt="KLYX">
+    <div>KLYX <span>HUB</span></div>
+  </div>
+
+  <a href="index.html">← Back</a>
+</header>
+
+<main>
+
+  <section class="profile-heading">
+    <div class="profile-icon">♙</div>
+    <h1>Your Profile</h1>
+    <p>Welcome to KLYX HUB</p>
+  </section>
+
+  <section class="profile-card">
+
+    <a href="login.html" class="profile-option">
+      <span class="symbol">⇥</span>
+      <span>Login</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="register.html" class="profile-option">
+      <span class="symbol">＋</span>
+      <span>Create Account</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a href="settings.html" class="profile-option">
+      <span class="symbol">⚙</span>
+      <span>Settings</span>
+      <span class="arrow">›</span>
+    </a>
+
+  </section>
+
+</main>
+
+<footer>
+  <strong>KLYX HUB</strong><br>
+  Seamless Experience<br>
+  © 2026 KLYX HUB. All rights reserved.
+</footer>
+
+</body>
+</html>
