@@ -1,0 +1,224 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b09">
+  <title>Settings | KLYX HUB</title>
+  <link rel="icon" type="image/png" href="favicon-32.png">
+
+  <style>
+    :root {
+      --bg: #080b09;
+      --surface: #121915;
+      --gold: #d4af37;
+      --green: #087f45;
+      --light: #f4f4ed;
+      --muted: #a2aaa4;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--light);
+      font-family: Arial, sans-serif;
+      transition: background .2s, color .2s;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 6%;
+      border-bottom: 1px solid #26332b;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .brand img {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+
+    .brand span { color: var(--gold); }
+
+    header a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+
+    main {
+      max-width: 650px;
+      margin: 35px auto;
+      padding: 20px;
+    }
+
+    h1 { margin-bottom: 8px; }
+
+    .subtitle {
+      color: var(--muted);
+      margin-bottom: 30px;
+    }
+
+    .section-title {
+      color: var(--gold);
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin: 28px 0 12px;
+      text-transform: uppercase;
+    }
+
+    .settings-card {
+      background: var(--surface);
+      border: 1px solid #26352c;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .setting {
+      padding: 19px;
+      border-bottom: 1px solid #26352c;
+    }
+
+    .setting:last-child { border-bottom: none; }
+
+    .setting strong { display: block; margin-bottom: 6px; }
+
+    .setting small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    select {
+      width: 100%;
+      padding: 12px;
+      background: #080b09;
+      color: var(--light);
+      border: 1px solid var(--green);
+      border-radius: 8px;
+    }
+
+    .setting a {
+      color: var(--light);
+      text-decoration: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid #26332b;
+    }
+
+    footer strong { color: var(--gold); }
+
+    body.light {
+      --bg: #f4f4ed;
+      --surface: #ffffff;
+      --light: #172019;
+      --muted: #626b64;
+    }
+
+    body.light select {
+      background: #fff;
+      color: #172019;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="brand">
+    <img src="klyx-icon.png" alt="KLYX">
+    <div>KLYX <span>HUB</span></div>
+  </div>
+  <a href="profile.html">← Back</a>
+</header>
+
+<main>
+  <h1>Settings</h1>
+  <p class="subtitle">Customize your KLYX HUB experience.</p>
+
+  <div class="section-title">Appearance</div>
+  <section class="settings-card">
+    <div class="setting">
+      <strong>Theme</strong>
+      <small>Choose how KLYX HUB looks.</small>
+      <select id="theme">
+        <option value="dark">Dark</option>
+        <option value="light">Light</option>
+        <option value="system">System Default</option>
+      </select>
+    </div>
+  </section>
+
+  <div class="section-title">Account</div>
+  <section class="settings-card">
+    <div class="setting">
+      <a href="login.html">Login / Manage Account →</a>
+    </div>
+  </section>
+
+  <div class="section-title">Privacy</div>
+  <section class="settings-card">
+    <div class="setting">
+      <a href="#privacy">Privacy Information →</a>
+    </div>
+  </section>
+
+  <div class="section-title">About</div>
+  <section class="settings-card">
+    <div class="setting">
+      <strong>KLYX HUB</strong>
+      <small>Seamless Experience.</small>
+      <small>Discover | Download | Enjoy</small>
+      <small>Platform Version 1.0</small>
+      <small>© 2026 KLYX HUB. All rights reserved.</small>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>KLYX HUB</strong><br>
+  Seamless Experience<br>
+  © 2026 KLYX HUB. All rights reserved.
+</footer>
+
+<script>
+  const themeSelect = document.getElementById("theme");
+
+  function applyTheme(theme) {
+    const light = theme === "light" ||
+      (theme === "system" &&
+       window.matchMedia("(prefers-color-scheme: light)").matches);
+
+    document.body.classList.toggle("light", light);
+  }
+
+  const savedTheme = localStorage.getItem("klyx-theme") || "dark";
+  themeSelect.value = savedTheme;
+  applyTheme(savedTheme);
+
+  themeSelect.addEventListener("change", () => {
+    localStorage.setItem("klyx-theme", themeSelect.value);
+    applyTheme(themeSelect.value);
+  });
+</script>
+
+</body>
+  </html>
+  
