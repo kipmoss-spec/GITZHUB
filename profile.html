@@ -6,7 +6,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080b09">
   <title>Profile | KLYX HUB</title>
-
   <link rel="icon" type="image/png" href="favicon-32.png">
 
   <style>
@@ -19,9 +18,7 @@
       --muted: #a2aaa4;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -52,9 +49,7 @@
       object-fit: contain;
     }
 
-    .brand span {
-      color: var(--gold);
-    }
+    .brand span { color: var(--gold); }
 
     header a {
       color: var(--gold);
@@ -85,12 +80,22 @@
       font-size: 38px;
     }
 
-    h1 {
-      margin: 8px 0;
+    h1 { margin: 8px 0; }
+
+    .profile-heading p { color: var(--muted); }
+
+    .account-info {
+      text-align: center;
+      margin-bottom: 22px;
+      color: var(--muted);
+      overflow-wrap: anywhere;
     }
 
-    .profile-heading p {
-      color: var(--muted);
+    .account-info strong {
+      display: block;
+      color: var(--light);
+      font-size: 19px;
+      margin-bottom: 7px;
     }
 
     .profile-card {
@@ -109,11 +114,14 @@
       text-decoration: none;
       border-bottom: 1px solid #26352c;
       font-size: 16px;
+      width: 100%;
+      background: transparent;
+      font-family: inherit;
+      cursor: pointer;
+      text-align: left;
     }
 
-    .profile-option:last-child {
-      border-bottom: none;
-    }
+    .profile-option:last-child { border-bottom: none; }
 
     .profile-option .symbol {
       color: var(--gold);
@@ -122,14 +130,23 @@
       text-align: center;
     }
 
-    .profile-option:hover {
-      background: #19241d;
-    }
+    .profile-option:hover { background: #19241d; }
 
     .arrow {
       margin-left: auto;
       color: var(--muted);
     }
+
+    .logout { color: #ff7777; }
+
+    .message {
+      text-align: center;
+      color: var(--muted);
+      margin: 15px 0;
+      font-size: 14px;
+    }
+
+    .hidden { display: none !important; }
 
     footer {
       text-align: center;
@@ -139,9 +156,7 @@
       border-top: 1px solid #26332b;
     }
 
-    footer strong {
-      color: var(--gold);
-    }
+    footer strong { color: var(--gold); }
   </style>
 </head>
 
@@ -152,7 +167,6 @@
     <img src="klyx-icon.png" alt="KLYX">
     <div>KLYX <span>HUB</span></div>
   </div>
-
   <a href="index.html">← Back</a>
 </header>
 
@@ -161,10 +175,18 @@
   <section class="profile-heading">
     <div class="profile-icon">♙</div>
     <h1>Your Profile</h1>
-    <p>Welcome to KLYX HUB</p>
+    <p id="welcome-text">Welcome to KLYX HUB</p>
   </section>
 
-  <section class="profile-card">
+  <div id="account-info" class="account-info hidden">
+    <strong id="display-name"></strong>
+    <span id="display-email"></span>
+  </div>
+
+  <p id="status-message" class="message">Checking account...</p>
+
+  <!-- Logged out -->
+  <section id="logged-out" class="profile-card hidden">
 
     <a href="login.html" class="profile-option">
       <span class="symbol">⇥</span>
@@ -186,6 +208,34 @@
 
   </section>
 
+  <!-- Logged in -->
+  <section id="logged-in" class="profile-card hidden">
+
+    <a href="settings.html" class="profile-option">
+      <span class="symbol">♙</span>
+      <span>My Profile</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <div class="profile-option" style="cursor:default;">
+      <span class="symbol">▣</span>
+      <span>My App Library <small style="color:var(--muted);display:block;margin-top:5px;">Coming soon</small></span>
+    </div>
+
+    <a href="settings.html" class="profile-option">
+      <span class="symbol">⚙</span>
+      <span>Settings</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <button id="logout-button" class="profile-option logout">
+      <span class="symbol">⇥</span>
+      <span>Log Out</span>
+      <span class="arrow">›</span>
+    </button>
+
+  </section>
+
 </main>
 
 <footer>
@@ -193,6 +243,117 @@
   Seamless Experience<br>
   © 2026 KLYX HUB. All rights reserved.
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  const SUPABASE_URL = "https://kgqojnwfuqqvfkqkswri.supabase.co";
+
+  // Paste your existing sb_publishable_ key here.
+  const SUPABASE_KEY = sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt
+
+  const client = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+  const loggedOut = document.getElementById("logged-out");
+  const loggedIn = document.getElementById("logged-in");
+  const accountInfo = document.getElementById("account-info");
+  const statusMessage = document.getElementById("status-message");
+
+  let currentUserId = null;
+
+  async function updateProfile(user) {
+    if (!user) {
+      currentUserId = null;
+      loggedOut.classList.remove("hidden");
+      loggedIn.classList.add("hidden");
+      accountInfo.classList.add("hidden");
+      document.getElementById("welcome-text").textContent =
+        "Welcome to KLYX HUB";
+      statusMessage.textContent = "";
+      return;
+    }
+
+    currentUserId = user.id;
+
+    loggedOut.classList.add("hidden");
+    loggedIn.classList.remove("hidden");
+    accountInfo.classList.remove("hidden");
+
+    document.getElementById("welcome-text").textContent =
+      "Welcome back!";
+
+    document.getElementById("display-email").textContent =
+      user.email || "";
+
+    let name = user.user_metadata?.display_name || "KLYX User";
+
+    const { data, error } = await client
+      .from("profiles")
+      .select("display_name,email")
+      .eq("id", user.id)
+      .maybeSingle();
+
+    if (error) {
+      console.error("Profile lookup:", error.message);
+    }
+
+    // Avoid updating the page if the account changed during the request.
+    if (currentUserId !== user.id) return;
+
+    if (data?.display_name) {
+      name = data.display_name;
+    }
+
+    document.getElementById("display-name").textContent = name;
+    statusMessage.textContent = "";
+  }
+
+  async function checkSession() {
+    const { data, error } = await client.auth.getSession();
+
+    if (error) {
+      statusMessage.textContent =
+        "Unable to check your account. Please refresh the page.";
+      return;
+    }
+
+    await updateProfile(data.session?.user || null);
+  }
+
+  client.auth.onAuthStateChange((event, session) => {
+    if (event === "INITIAL_SESSION") return;
+
+    setTimeout(() => {
+      updateProfile(session?.user || null);
+    }, 0);
+  });
+
+  document.getElementById("logout-button")
+    .addEventListener("click", async () => {
+
+      const button = document.getElementById("logout-button");
+      button.disabled = true;
+      statusMessage.textContent = "Signing out...";
+
+      const { error } = await client.auth.signOut();
+
+      button.disabled = false;
+
+      if (error) {
+        statusMessage.textContent =
+          "Unable to sign out: " + error.message;
+        return;
+      }
+
+      await updateProfile(null);
+      statusMessage.textContent = "You have successfully logged out.";
+    });
+
+  checkSession();
+</script>
 
 </body>
 </html>
