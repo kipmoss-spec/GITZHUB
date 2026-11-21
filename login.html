@@ -247,12 +247,12 @@
 
     // Replace this placeholder with your sb_publishable_ key.
     // Never use your sb_secret_ key here.
-    const SUPABASE_KEY = sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt
+    const SUPABASE_KEY = "sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt"
 
-    const client = supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    const client = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
     const form = document.getElementById("login-form");
     const button = document.getElementById("login-button");
