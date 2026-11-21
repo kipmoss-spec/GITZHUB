@@ -75,6 +75,20 @@ nav a {
   font-size: 14px;
 }
 
+.profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.profile-link img {
+  width: 27px;
+  height: 27px;
+  object-fit: contain;
+  border-radius: 7px;
+  vertical-align: middle;
+}
+
 .hero {
   padding: 75px 7% 65px;
   text-align: center;
@@ -234,7 +248,15 @@ footer strong { color: var(--gold); }
 
 @media(max-width: 550px) {
   header { padding: 13px 5%; }
-  nav a { margin-left: 10px; font-size: 12px; }
+  nav a {
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+.profile-link img {
+  width: 23px;
+  height: 23px;
+}
   .brand-name { font-size: 19px; }
   .hero { padding: 60px 6%; }
   .catalogue { padding: 30px 5% 55px; }
@@ -257,9 +279,10 @@ footer strong { color: var(--gold); }
 <nav>
   <a href="#home">Home</a>
   <a href="#apps">Explore Apps</a>
-  <a href="profile.html" class="profile-link">
-    <span>♙</span> Profile
-  </a>
+<a href="profile.html" class="profile-link">
+  <img src="klyx-icon.png" alt="KLYX Profile">
+  Profile
+</a>
 </nav>
   
 </header>
