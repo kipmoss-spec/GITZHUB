@@ -36,17 +36,25 @@
       padding: 35px 20px;
     }
 
-    .app-icon {
-      width: 90px;
-      height: 90px;
-      border-radius: 24px;
-      background: #153d29;
-      display: grid;
-      place-items: center;
-      color: #e2bd49;
-      font-size: 48px;
-      margin-bottom: 22px;
-    }
+.app-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 24px;
+  background: #153d29;
+  display: grid;
+  place-items: center;
+  color: #e2bd49;
+  font-size: 48px;
+  margin-bottom: 22px;
+  overflow: hidden;
+}
+
+.app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
     .status {
       color: #36d68a;
@@ -159,7 +167,9 @@
 </header>
 
 <main class="container">
-  <div class="app-icon">♫</div>
+  <div class="app-icon">
+  <img src="../worship-icon.jpg" alt="Songs Of Worship & Praise app icon">
+  </div>
 
   <span class="status">● AVAILABLE</span>
 
