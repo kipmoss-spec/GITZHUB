@@ -1,0 +1,336 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b09">
+  <title>Login | KLYX HUB</title>
+
+  <link rel="icon" href="favicon.ico">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #080b09;
+      color: #f4f4ed;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .login-container {
+      width: 100%;
+      max-width: 420px;
+      background: #121915;
+      border: 1px solid #26352c;
+      border-radius: 18px;
+      padding: 32px 26px;
+      box-shadow: 0 15px 45px rgba(0,0,0,.4);
+    }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .brand img {
+      width: 76px;
+      height: 76px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .brand h1 {
+      font-size: 27px;
+      letter-spacing: 2px;
+      color: #d4af37;
+    }
+
+    .brand h1 span {
+      color: #087f45;
+    }
+
+    .brand p {
+      color: #a2aaa4;
+      font-size: 13px;
+      margin-top: 7px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 23px;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #a2aaa4;
+      font-size: 14px;
+      margin-bottom: 26px;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 8px;
+      color: #d4af37;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 9px;
+      border: 1px solid #35443a;
+      background: #080b09;
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      margin-bottom: 19px;
+    }
+
+    input:focus {
+      border-color: #d4af37;
+    }
+
+    .forgot {
+      display: block;
+      text-align: right;
+      color: #12a568;
+      font-size: 13px;
+      text-decoration: none;
+      margin-top: -8px;
+      margin-bottom: 22px;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9px;
+      background: #d4af37;
+      color: #080b09;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    .message {
+      display: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+      overflow-wrap: anywhere;
+    }
+
+    .message.error {
+      display: block;
+      background: #3a1717;
+      color: #ffbaba;
+    }
+
+    .message.success {
+      display: block;
+      background: #123324;
+      color: #a8efc5;
+    }
+
+    .register {
+      text-align: center;
+      color: #a2aaa4;
+      font-size: 14px;
+      margin-top: 24px;
+    }
+
+    .register a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .back {
+      display: block;
+      text-align: center;
+      color: #a2aaa4;
+      text-decoration: none;
+      font-size: 13px;
+      margin-top: 24px;
+    }
+
+    footer {
+      text-align: center;
+      color: #68736b;
+      font-size: 11px;
+      margin-top: 28px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="login-container">
+
+    <div class="brand">
+      <img src="klyx-icon.png" alt="KLYX logo">
+      <h1>KLYX <span>HUB</span></h1>
+      <p>Seamless Experience.</p>
+    </div>
+
+    <h2>Welcome Back</h2>
+    <p class="subtitle">Sign in to your KLYX HUB account.</p>
+
+    <div id="message" class="message" role="status"></div>
+
+    <form id="login-form">
+
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        id="email"
+        placeholder="Enter your email"
+        autocomplete="email"
+        required
+      >
+
+      <label for="password">Password</label>
+      <input
+        type="password"
+        id="password"
+        placeholder="Enter your password"
+        autocomplete="current-password"
+        required
+      >
+
+      <a href="#" class="forgot" id="forgot-link">
+        Forgot password?
+      </a>
+
+      <button type="submit" id="login-button">
+        Sign In
+      </button>
+
+    </form>
+
+    <p class="register">
+      Don't have an account?
+      <a href="register.html">Create Account</a>
+    </p>
+
+    <a href="index.html" class="back">← Back to KLYX HUB</a>
+
+    <footer>
+      © 2026 KLYX HUB. All rights reserved.
+    </footer>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL =
+      "https://kgqojnwfuqqvfkqkswri.supabase.co";
+
+    // Replace this placeholder with your sb_publishable_ key.
+    // Never use your sb_secret_ key here.
+    const SUPABASE_KEY = sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt
+
+    const client = supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    const form = document.getElementById("login-form");
+    const button = document.getElementById("login-button");
+    const message = document.getElementById("message");
+
+    function showMessage(text, type) {
+      message.textContent = text;
+      message.className = "message " + type;
+    }
+
+    form.addEventListener("submit", async function(event) {
+      event.preventDefault();
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      button.disabled = true;
+      button.textContent = "Signing in...";
+      message.className = "message";
+
+      try {
+        const { data, error } = await client.auth.signInWithPassword({
+          email: email,
+          password: password
+        });
+
+        if (error) throw error;
+
+        if (data.user) {
+          showMessage("Login successful! Welcome to KLYX HUB.", "success");
+
+          window.location.href = "profile.html";
+        }
+
+      } catch (error) {
+        showMessage(error.message, "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Sign In";
+      }
+    });
+
+    document.getElementById("forgot-link").addEventListener(
+      "click",
+      async function(event) {
+        event.preventDefault();
+
+        const email = document.getElementById("email").value.trim();
+
+        if (!email) {
+          showMessage(
+            "Please enter your email address first.",
+            "error"
+          );
+          return;
+        }
+
+        try {
+          const { error } =
+            await client.auth.resetPasswordForEmail(email, {
+              redirectTo:
+                "https://kipmoss-spec.github.io/klyx-hub/reset-password.html"
+            });
+
+          if (error) throw error;
+
+          showMessage(
+            "If an account exists for this address, a password recovery email will be sent.",
+            "success"
+          );
+
+        } catch (error) {
+          showMessage(error.message, "error");
+        }
+      }
+    );
+  </script>
+
+</body>
+</html>
+  
