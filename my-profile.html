@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b09">
+  <title>My Profile | KLYX HUB</title>
+  <link rel="icon" href="favicon.ico">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #080b09;
+      color: #f4f4ed;
+      font-family: Arial, sans-serif;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 30px;
+    }
+
+    header img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    header h1 {
+      color: #d4af37;
+      font-size: 21px;
+    }
+
+    header p {
+      color: #a2aaa4;
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .card {
+      background: #121915;
+      border: 1px solid #26352c;
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 18px;
+    }
+
+    .avatar {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      background: #087f45;
+      color: #d4af37;
+      display: grid;
+      place-items: center;
+      font-size: 32px;
+      margin-bottom: 18px;
+    }
+
+    h2 {
+      color: #d4af37;
+      font-size: 20px;
+      margin-bottom: 7px;
+    }
+
+    .muted {
+      color: #a2aaa4;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .detail {
+      border-bottom: 1px solid #26352c;
+      padding: 15px 0;
+    }
+
+    .detail:last-child {
+      border-bottom: none;
+    }
+
+    .detail span {
+      display: block;
+      color: #a2aaa4;
+      font-size: 12px;
+      margin-bottom: 7px;
+    }
+
+    .detail strong {
+      font-size: 15px;
+      overflow-wrap: anywhere;
+    }
+
+    label {
+      display: block;
+      font-size: 13px;
+      color: #a2aaa4;
+      margin: 18px 0 8px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      background: #080b09;
+      border: 1px solid #35453a;
+      border-radius: 9px;
+      color: white;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus {
+      border-color: #d4af37;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 9px;
+      background: #087f45;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      margin-top: 18px;
+      cursor: pointer;
+    }
+
+    button:disabled {
+      opacity: 0.6;
+    }
+
+    #message {
+      font-size: 13px;
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 22px 0;
+    }
+
+    a {
+      color: #d4af37;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    footer {
+      text-align: center;
+      color: #778078;
+      font-size: 12px;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+
+<body>
+  <main class="container">
+
+    <header>
+      <img src="klyx-icon.png" alt="KLYX">
+      <div>
+        <h1>KLYX HUB</h1>
+        <p>Seamless Experience.</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="avatar">♙</div>
+      <h2>My Profile</h2>
+      <p class="muted">Manage your personal account information.</p>
+
+      <div class="detail">
+        <span>Full Name</span>
+        <strong id="displayName">Loading...</strong>
+      </div>
+
+      <div class="detail">
+        <span>Email Address</span>
+        <strong id="email">Loading...</strong>
+      </div>
+
+      <div class="detail">
+        <span>Account Created</span>
+        <strong id="createdAt">Loading...</strong>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Edit Profile</h2>
+      <p class="muted">Update the name displayed on your account.</p>
+
+      <form id="profileForm">
+        <label for="newName">Display Name</label>
+        <input
+          type="text"
+          id="newName"
+          maxlength="60"
+          placeholder="Enter your name"
+          required
+        >
+
+        <button type="submit" id="saveButton">
+          Save Changes
+        </button>
+      </form>
+
+      <p id="message"></p>
+    </section>
+
+    <nav class="links">
+      <a href="profile.html">← Back to Profile</a>
+      <a href="settings.html">⚙ Settings</a>
+      <a href="index.html">Home</a>
+    </nav>
+
+    <footer>
+      © 2026 KLYX HUB · Discover | Download | Enjoy
+    </footer>
+
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script>
+    const SUPABASE_URL =
+      "https://kgqojnwfuqqvfkqkswri.supabase.co";
+
+    // Replace this placeholder with your existing publishable key.
+    const SUPABASE_KEY = "sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt";
+
+    const client = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
+
+    const displayName = document.getElementById("displayName");
+    const email = document.getElementById("email");
+    const createdAt = document.getElementById("createdAt");
+    const newName = document.getElementById("newName");
+    const message = document.getElementById("message");
+    const saveButton = document.getElementById("saveButton");
+
+    let currentUser = null;
+
+    async function loadProfile() {
+      const { data, error } = await client.auth.getUser();
+
+      if (error || !data.user) {
+        window.location.href = "login.html";
+        return;
+      }
+
+      currentUser = data.user;
+
+      const { data: profile, error: profileError } =
+        await client
+          .from("profiles")
+          .select("display_name,email")
+          .eq("id", currentUser.id)
+          .single();
+
+      if (profileError) {
+        console.error(profileError);
+      }
+
+      const name =
+        profile?.display_name ||
+        currentUser.user_metadata?.display_name ||
+        "KLYX User";
+
+      displayName.textContent = name;
+      email.textContent = currentUser.email || "Not available";
+      newName.value = name;
+
+      createdAt.textContent = currentUser.created_at
+        ? new Date(currentUser.created_at).toLocaleDateString(
+            undefined,
+            {
+              year: "numeric",
+              month: "long",
+              day: "numeric"
+            }
+          )
+        : "Not available";
+    }
+
+    document
+      .getElementById("profileForm")
+      .addEventListener("submit", async function(event) {
+        event.preventDefault();
+
+        if (!currentUser) return;
+
+        const name = newName.value.trim();
+
+        if (!name) {
+          message.textContent = "Please enter your display name.";
+          message.style.color = "#ff7777";
+          return;
+        }
+
+        saveButton.disabled = true;
+        saveButton.textContent = "Saving...";
+        message.textContent = "";
+
+        const { error } = await client
+          .from("profiles")
+          .update({
+            display_name: name,
+            updated_at: new Date().toISOString()
+          })
+          .eq("id", currentUser.id);
+
+        if (error) {
+          message.textContent =
+            "Unable to save changes: " + error.message;
+          message.style.color = "#ff7777";
+        } else {
+          await client.auth.updateUser({
+            data: { display_name: name }
+          });
+
+          displayName.textContent = name;
+          message.textContent = "Profile updated successfully!";
+          message.style.color = "#12a568";
+        }
+
+        saveButton.disabled = false;
+        saveButton.textContent = "Save Changes";
+      });
+
+    loadProfile();
+  </script>
+</body>
+  </html>
+  
