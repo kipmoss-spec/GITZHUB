@@ -1,0 +1,286 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b09">
+  <meta name="description" content="Discover NØTIVA, the offline music player. Play it Green. Coming soon on KLYX HUB.">
+  <title>NØTIVA | KLYX HUB</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #080b09;
+      color: #f5f5f5;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 18px 6%;
+      background: #101511;
+      border-bottom: 1px solid #26382c;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    header a {
+      color: #d4af37;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 850px;
+      margin: 55px auto;
+      text-align: center;
+    }
+
+    .app-icon {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 22px;
+      border-radius: 25px;
+      background: #111;
+      border: 1px solid #c9a227;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .app-icon img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    .status {
+      display: inline-block;
+      background: #173e2a;
+      color: #38d98b;
+      border: 1px solid #087f45;
+      padding: 6px 15px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+
+    h1 {
+      color: #d4af37;
+      font-size: 32px;
+      margin-bottom: 5px;
+    }
+
+    .tagline {
+      color: #38b878;
+      font-size: 17px;
+      margin-bottom: 22px;
+    }
+
+    .description {
+      color: #c3c9c4;
+      max-width: 650px;
+      margin: 0 auto 28px;
+    }
+
+    .details {
+      background: #121914;
+      border: 1px solid #27382d;
+      border-radius: 15px;
+      padding: 20px;
+      margin: 28px auto;
+      text-align: left;
+      max-width: 600px;
+    }
+
+    .details p {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid #27382d;
+    }
+
+    .details p:last-child {
+      border-bottom: none;
+    }
+
+    .details span {
+      color: #aab5ad;
+    }
+
+    .details strong {
+      color: #d4af37;
+      text-align: right;
+    }
+
+    .coming-soon {
+      display: inline-block;
+      background: #173e2a;
+      color: #39d98a;
+      border: 1px solid #087f45;
+      border-radius: 10px;
+      padding: 13px 28px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      margin-top: 5px;
+    }
+
+    .features {
+      max-width: 650px;
+      margin: 40px auto;
+      text-align: left;
+      background: #111713;
+      border: 1px solid #27382d;
+      border-radius: 15px;
+      padding: 24px;
+    }
+
+    .features h2 {
+      color: #d4af37;
+      margin-bottom: 14px;
+      text-align: center;
+    }
+
+    .features ul {
+      padding-left: 22px;
+      color: #c3c9c4;
+    }
+
+    .features li {
+      margin-bottom: 9px;
+    }
+
+    .inside-app {
+      padding: 40px 6%;
+      text-align: center;
+      background: #101511;
+      border-top: 1px solid #26382c;
+    }
+
+    .inside-app h2 {
+      color: #d4af37;
+      font-size: 25px;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+    }
+
+    .inside-app > p {
+      color: #aab5ad;
+      margin-bottom: 25px;
+    }
+
+    .inside-placeholder {
+      max-width: 650px;
+      margin: 0 auto;
+      padding: 35px 20px;
+      border: 1px dashed #526456;
+      border-radius: 14px;
+      color: #aab5ad;
+      background: #0b100d;
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px 15px;
+      color: #8d9a90;
+      font-size: 13px;
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 27px;
+      }
+
+      .details p {
+        font-size: 13px;
+      }
+
+      .inside-app h2 {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="../index.html">KLYX HUB</a>
+  <a href="../index.html">← Back to Explore Apps</a>
+</header>
+
+<main class="container">
+
+  <div class="app-icon">
+    <img src="../notiva-icon.png" alt="NØTIVA official app icon">
+  </div>
+
+  <span class="status">● COMING SOON</span>
+
+  <h1>NØTIVA</h1>
+
+  <div class="tagline">Play it Green</div>
+
+  <p class="description">
+    Your offline music player. Your music, your experience.
+    NØTIVA is being developed to bring your personal music
+    collection together in one elegant listening experience.
+  </p>
+
+  <section class="details">
+    <p><span>Application</span><strong>NØTIVA</strong></p>
+    <p><span>Category</span><strong>Music & Audio</strong></p>
+    <p><span>Platform</span><strong>Android</strong></p>
+    <p><span>Availability</span><strong>Coming Soon</strong></p>
+    <p><span>Download</span><strong>Not yet available</strong></p>
+  </section>
+
+  <div class="coming-soon">
+    COMING SOON
+  </div>
+
+  <section class="features">
+    <h2>Planned Features</h2>
+    <ul>
+      <li>Offline playback of your local music library</li>
+      <li>Browse songs, albums, artists and folders</li>
+      <li>Favourites and playlists</li>
+      <li>Customisable listening experience</li>
+      <li>Audio controls and equalizer</li>
+    </ul>
+  </section>
+
+</main>
+
+<section class="inside-app">
+  <h2>INSIDE THE APP</h2>
+  <p>
+    Get a preview of NØTIVA as development progresses.
+  </p>
+
+  <div class="inside-placeholder">
+    NØTIVA interface previews will appear here as they become available.
+  </div>
+</section>
+
+<footer>
+  KLYX HUB · Seamless Experience<br>
+  © 2026 KLYX HUB. All rights reserved.
+</footer>
+
+</body>
+    </html>
+    
