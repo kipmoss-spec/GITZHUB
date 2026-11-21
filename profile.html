@@ -67,18 +67,24 @@
       text-align: center;
       margin-bottom: 35px;
     }
+.profile-icon {
+  width: 110px;
+  height: 110px;
+  margin: auto auto 15px;
+  border-radius: 22px;
+  background: #080b09;
+  border: 1px solid #26352c;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
 
-    .profile-icon {
-      width: 85px;
-      height: 85px;
-      margin: auto auto 15px;
-      border-radius: 50%;
-      background: #183c2c;
-      display: grid;
-      place-items: center;
-      color: var(--gold);
-      font-size: 38px;
-    }
+.profile-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
 
     h1 { margin: 8px 0; }
 
@@ -173,7 +179,9 @@
 <main>
 
   <section class="profile-heading">
-    <div class="profile-icon">♙</div>
+    <div class="profile-icon">
+  <img src="klyx-icon.png" alt="KLYX HUB">
+    </div>
     <h1>Your Profile</h1>
     <p id="welcome-text">Welcome to KLYX HUB</p>
   </section>
@@ -211,7 +219,7 @@
   <!-- Logged in -->
   <section id="logged-in" class="profile-card hidden">
 
-    <a href="settings.html" class="profile-option">
+    <a href="my-profile.html" class="profile-option">
       <span class="symbol">♙</span>
       <span>My Profile</span>
       <span class="arrow">›</span>
