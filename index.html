@@ -187,7 +187,13 @@ nav a {
   background: #173e2a;
   margin-bottom: 17px;
 }
-
+.app-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  border-radius: inherit;
+}
 .app-card h3 { margin: 0 0 9px; }
 
 .app-card p {
@@ -313,7 +319,9 @@ footer strong { color: var(--gold); }
   <div class="apps" id="appList">
 
     <article class="app-card" data-name="songs worship praise music">
-      <div class="app-icon">♫</div>
+      <div class="app-icon">
+  <img src="images/worship-icon.jpg" alt="Songs Of Worship & Praise app icon">
+      </div>
       <span class="status">Available</span>
       <h3>
   <a href="apps/songs-of-worship-and-praise.html"
@@ -333,7 +341,9 @@ footer strong { color: var(--gold); }
     </article>
 
     <article class="app-card" data-name="notiva offline music player">
-      <div class="app-icon">♪</div>
+      <div class="app-icon">
+  <img src="images/notiva-icon.png" alt="NØTIVA app icon">
+      </div>
       <span class="status soon">Coming soon</span>
       <h3>NØTIVA</h3>
       <p>
