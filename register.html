@@ -260,12 +260,12 @@
 
     // Use the same public publishable key as login.html.
     // Never use the sb_secret_ key here.
-    const SUPABASE_KEY = sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt
+    const SUPABASE_KEY = "sb_publishable_AslZ3DDcQqjNlY7AFyJKPg_sX6f8DQt"
 
-    const client = supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
+    const client = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
     const form = document.getElementById("register-form");
     const button = document.getElementById("register-button");
